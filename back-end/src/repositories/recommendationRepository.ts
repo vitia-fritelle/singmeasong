@@ -1,9 +1,9 @@
 import { Prisma } from "@prisma/client";
-import { prisma } from "../database.js";
+import prisma from "../database.js";
 import { CreateRecommendationData } from "../services/recommendationsService.js";
 
 async function create(createRecommendationData: CreateRecommendationData) {
-  await prisma.recommendation.create({
+  return await prisma.recommendation.create({
     data: createRecommendationData,
   });
 }
@@ -64,7 +64,7 @@ async function updateScore(id: number, operation: "increment" | "decrement") {
 }
 
 async function remove(id: number) {
-  await prisma.recommendation.delete({
+  return await prisma.recommendation.delete({
     where: { id },
   });
 }
