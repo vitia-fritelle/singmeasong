@@ -48,27 +48,27 @@ describe('find in database', () => {
         expect(response.length).toBe(take);
         for(let i = 0; i < response.length-1; i++) {
             expect(response[i].score)
-            .toBeGreaterThanOrEqual(response[i+1].score);
+                .toBeGreaterThanOrEqual(response[i+1].score);
         }
         for(let i = 0; i < response.length; i++) {
             expect(response[i].score)
-            .toBeLessThanOrEqual(score);
+                .toBeLessThanOrEqual(score);
         }
     })
     it('should get an amount of recommendations by score', async() => {
         const take = 10;
         prismaMock.recommendation.findMany.mockResolvedValueOnce(
             Array<typeof user>(take)
-            .fill(user)
-            .map((obj, index) => {
-                return {...obj, score: 100-index};
-            })
+                .fill(user)
+                .map((obj, index) => {
+                    return {...obj, score: 100-index};
+                })
         );
         const response = await getAmountByScore(take);
         expect(response.length).toBe(take);
         for(let i = 0; i < response.length-1; i++) {
             expect(response[i].score)
-            .toBeGreaterThanOrEqual(response[i+1].score);
+                .toBeGreaterThanOrEqual(response[i+1].score);
         }
     });
     it('should find recommendation by name', async() => {

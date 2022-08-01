@@ -13,7 +13,7 @@ function generateSong(song: Omit<Recommendation, "id"|"score"> | undefined = und
     }
 }
 
-async function createSong(score: number = 0) {
+async function createSong(score = 0) {
     return await prisma.recommendation.create({
         data: {...generateSong(), score}
     });
@@ -21,8 +21,8 @@ async function createSong(score: number = 0) {
 
 async function createSongs(
     number: number, 
-    min: number = 0, 
-    max: number = 0, 
+    min = 0, 
+    max = 0, 
     songs: Omit<Recommendation, "id"|"score">[] = []
 ) {
     return await prisma.recommendation.createMany({
