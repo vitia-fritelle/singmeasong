@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "test": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env jest --watch --runInBand",
+    "dev:test": "dotenv -e .env.test prisma migrate dev && dotenv -e .env.test nodemon src/server.ts",
+    "test:integration": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest --watch --runInBand .tests/integration",
+    "test:unit": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest --watch --runInBand .tests/unit",
     "coverage": "NODE_OPTIONS=--experimental-vm-modules npx jest --collect-coverage",
     "lint": "eslint . --env node --ext .ts",
 		"lint:fix": "eslint . --env node --fix --ext .ts",
